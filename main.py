@@ -5,7 +5,15 @@ choice = str(input())
 
 if choice == "y":
     print("please enter the file name with txt extension (\".txt\"): ")
-    filename = input()
+    filename = str(input())
+    print("Overwrite data or create new file? o/c")
+    outputfile = str(input())
+    if outputfile == "c":
+        with open(filename, 'r') as file:
+            filedata = file.read()
+        with open('output.txt', 'w') as file:
+            file.write(filedata)
+        filename = 'output.txt'
     while 1:
         with open(filename, 'r') as file:
             filedata = file.read()
@@ -27,6 +35,8 @@ if choice == "y":
 
         if choice2 == "n":
             print("Thanks for using my program :)")
+            if outputfile == "c":
+                print("\nNew file output.txt was created with your changes")
             break
 
 else:
